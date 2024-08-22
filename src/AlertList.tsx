@@ -10,6 +10,7 @@ import {
 } from "react-bootstrap";
 import { Gear } from "react-bootstrap-icons";
 import axios from "axios";
+import config from "./config";
 
 interface RSSFeed {
   topic: string;
@@ -25,12 +26,9 @@ function AlertList({ key }: { key: string }) {
 
   useEffect(() => {
     axios
-      .get<RSSFeed[]>(
-        "https://4a14-2401-4900-1cba-87f5-b046-8858-cddb-3a15.ngrok-free.app/get/alerts",
-        {
-          withCredentials: true,
-        }
-      )
+      .get<RSSFeed[]>(`${config.apiHostname}/get/alerts`, {
+        withCredentials: true,
+      })
       .then((response) => {
         setFeeds(response.data);
         setLoading(false);

@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import AlertList from "./AlertList"; // Assuming AlertList is in the same directory
+import config from "./config";
 
 function RunForm() {
   const [alertText, setAlertText] = useState("");
@@ -14,12 +15,9 @@ function RunForm() {
     setIsLoading(true);
 
     try {
-      await axios.post(
-        "https://4a14-2401-4900-1cba-87f5-b046-8858-cddb-3a15.ngrok-free.app/create/alert",
-        {
-          topic: alertText,
-        }
-      );
+      await axios.post(`${config.apiHostname}/create/alert`, {
+        topic: alertText,
+      });
       setIsLoading(false);
       setRefreshAlerts((prev) => !prev); // Toggle to refresh the alert list
       setAlertText(""); // Clear the input field after submission

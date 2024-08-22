@@ -1,5 +1,6 @@
 import "tailwindcss/tailwind.css";
 import { FcGoogle } from "react-icons/fc";
+import config from "./config";
 
 function Landing() {
   return (
@@ -104,8 +105,7 @@ function Landing() {
             <button
               className="mt-8 bg-black text-white py-3 px-8 rounded-lg text-lg hover:bg-gray-800 flex items-center"
               onClick={() => {
-                window.location.href =
-                  "https://4a14-2401-4900-1cba-87f5-b046-8858-cddb-3a15.ngrok-free.app/auth/google";
+                window.location.href = `${config.apiHostname}/auth/google`;
               }}
             >
               <FcGoogle className="h-5 w-5 mr-2" />

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import axios from "axios";
+import config from "./config";
 
 function AuthCallback() {
   useEffect(() => {
@@ -12,7 +13,7 @@ function AuthCallback() {
       // Send the access_token to the backend using axios
       axios
         .post(
-          "https://4a14-2401-4900-1cba-87f5-b046-8858-cddb-3a15.ngrok-free.app/auth/store-token",
+          `${config.apiHostname}/auth/store-token`,
           { access_token: accessToken },
           { withCredentials: true } // To include cookies in the request
         )
