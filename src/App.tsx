@@ -9,13 +9,15 @@ import Cookies from "js-cookie"; // Import js-cookie to manage cookies
 function App() {
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const accessToken = Cookies.get("access_token");
-  //   console.log(accessToken);
-  //   if (!accessToken) {
-  //     navigate("/"); // Redirect to the home page if the access_token is not present
-  //   }
-  // }, [navigate]);
+  useEffect(() => {
+    const accessToken = Cookies.get("access_token");
+    console.log(accessToken);
+    if (!accessToken) {
+      navigate("/"); // Redirect to the home page if the access_token is not present
+    } else {
+      navigate("/dashboard"); // Redirect to the dashboard if the access_token is present
+    }
+  }, [navigate]);
 
   return (
     <Routes>
