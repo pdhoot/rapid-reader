@@ -2,6 +2,7 @@
 // import InputGroup from "react-bootstrap/InputGroup";
 import RunForm from "./RunFom";
 import { Container } from "react-bootstrap";
+import NavbarCustom from "./NavbarCustom";
 function Dashboard() {
   return (
     <Container
@@ -12,6 +13,7 @@ function Dashboard() {
         padding: "0 15px",
       }}
     >
+      <NavbarCustom />
       <RunForm />
     </Container>
   );

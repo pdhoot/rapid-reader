@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 import {
-  Card,
-  Spinner,
-  Alert,
-  Container,
-  Row,
-  Col,
-  Button,
-} from "react-bootstrap";
-import { Gear } from "react-bootstrap-icons";
+  List,
+  ListItem,
+  ListItemText,
+  ListItemSecondaryAction,
+  IconButton,
+  Paper,
+  CircularProgress,
+  Typography,
+} from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 import config from "./config";
 
@@ -41,82 +43,67 @@ function AlertList({ key }: { key: string }) {
 
   if (loading) {
     return (
-      <div className="text-center mt-5">
-        <Spinner animation="border" variant="primary" />
-        <p>Loading RSS feeds...</p>
+      <div style={{ textAlign: "center", marginTop: "20px" }}>
+        <CircularProgress />
+        <Typography variant="body2" sx={{ marginTop: "10px" }}>
+          Loading RSS feeds...
+        </Typography>
       </div>
     );
   }
 
   if (error) {
     return (
-      <Alert variant="danger" className="mt-5 text-center">
+      <Typography
+        variant="body2"
+        color="error"
+        sx={{ textAlign: "center", marginTop: "20px" }}
+      >
         {error}
-      </Alert>
+      </Typography>
     );
   }
 
   if (feeds.length === 0) {
     return (
-      <Alert variant="info" className="mt-5 text-center">
+      <Typography
+        variant="body2"
+        sx={{ textAlign: "center", marginTop: "20px" }}
+      >
         No RSS feeds subscribed.
-      </Alert>
+      </Typography>
     );
   }
 
   return (
-    <Container className="mt-5">
-      <Row>
+    <Paper elevation={3} sx={{ marginTop: "20px" }}>
+      <List>
         {feeds.map((feed, index) => (
-          <Col md={12} lg={6} key={index} className="mb-4">
-            <Card
-              style={{
-                height: "250px",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-              }}
-            >
-              <Card.Body
-                style={{
-                  position: "relative",
-                  paddingTop: "2rem",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
+          <ListItem key={index} divider>
+            <ListItemText
+              primary={feed.topic}
+              secondary={`Frequency: ${
+                feed.frequency
+              } | Last Updated: ${new Date(feed.lastUpdated).toLocaleString()}`}
+            />
+            <ListItemSecondaryAction>
+              <IconButton
+                edge="end"
+                aria-label="edit"
+                href={feed.link}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <Button
-                  variant="link"
-                  href={feed.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    position: "absolute",
-                    top: "0",
-                    right: "0",
-                    padding: "10px",
-                    zIndex: 10,
-                  }}
-                >
-                  <Gear size={20} />
-                </Button>
-                <div style={{ textAlign: "center" }}>
-                  <Card.Title style={{ marginBottom: "0.5rem" }}>
-                    {feed.topic}
-                  </Card.Title>
-                  <Card.Text>{feed.frequency}</Card.Text>
-                </div>
-              </Card.Body>
-              <Card.Footer className="text-muted">
-                Last updated: {new Date(feed.lastUpdated).toLocaleString()}
-              </Card.Footer>
-            </Card>
-          </Col>
+                <EditIcon />
+              </IconButton>
+              <IconButton edge="end" aria-label="delete">
+                <DeleteIcon />
+              </IconButton>
+            </ListItemSecondaryAction>
+          </ListItem>
         ))}
-      </Row>
-    </Container>
+      </List>
+    </Paper>
   );
 }
 

@@ -1,8 +1,15 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+import {
+  Box,
+  TextField,
+  IconButton,
+  Paper,
+  Typography,
+  CircularProgress,
+} from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
 import axios from "axios";
-import AlertList from "./AlertList"; // Assuming AlertList is in the same directory
+import AlertList from "./AlertList";
 import config from "./config";
 
 function RunForm() {
@@ -19,8 +26,8 @@ function RunForm() {
         topic: alertText,
       });
       setIsLoading(false);
-      setRefreshAlerts((prev) => !prev); // Toggle to refresh the alert list
-      setAlertText(""); // Clear the input field after submission
+      setRefreshAlerts((prev) => !prev);
+      setAlertText("");
     } catch (error) {
       console.error("Error setting up alert:", error);
       setIsLoading(false);
@@ -28,51 +35,38 @@ function RunForm() {
   };
 
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-    >
-      <div
-        style={{
-          alignSelf: "flex-start",
-          marginTop: "20px",
-          width: "100%",
-          position: "relative",
+    <Box sx={{ padding: "20px", maxWidth: "600px", margin: "0 auto" }}>
+      <Typography
+        variant="h4"
+        sx={{
+          color: "#fff",
+          backgroundColor: "#3f51b5",
+          padding: "10px 20px",
+          borderRadius: "4px 4px 0 0",
         }}
       >
-        <Form
-          style={{ width: "500px", margin: "0 auto", position: "relative" }}
-          onSubmit={handleSubmit} // Attach the submit handler here
+        Alerts
+      </Typography>
+      <Paper elevation={3} sx={{ padding: "20px" }}>
+        <form
+          onSubmit={handleSubmit}
+          style={{ display: "flex", alignItems: "center" }}
         >
-          <Form.Control
-            type="text"
-            placeholder="Create an alert for"
+          <TextField
+            fullWidth
+            label="Create an alert about..."
+            variant="outlined"
             value={alertText}
             onChange={(e) => setAlertText(e.target.value)}
-            style={{ paddingRight: "80px" }}
+            sx={{ marginRight: "10px" }}
           />
-          <Button
-            variant="primary"
-            type="submit"
-            style={{
-              position: "absolute",
-              right: "0",
-              top: "0",
-              height: "100%",
-              borderTopLeftRadius: "0",
-              borderBottomLeftRadius: "0",
-            }}
-          >
-            Submit
-          </Button>
-        </Form>
-        {isLoading && (
-          <p style={{ marginTop: "10px", textAlign: "center" }}>
-            Setting up alert...
-          </p>
-        )}
-      </div>
-      <AlertList key={String(refreshAlerts)} />
-    </div>
+          <IconButton type="submit" color="primary" disabled={isLoading}>
+            {isLoading ? <CircularProgress size={24} /> : <AddIcon />}
+          </IconButton>
+        </form>
+        <AlertList key={String(refreshAlerts)} />
+      </Paper>
+    </Box>
   );
 }
 
