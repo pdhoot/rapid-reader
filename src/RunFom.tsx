@@ -39,9 +39,10 @@ function RunForm() {
       sx={{
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
+        alignItems: "flex-start", // Changed from "center" to "flex-start"
         height: "100vh",
         flexDirection: "column",
+        paddingTop: "20px", // Add padding to create space from top
       }}
     >
       <Paper
@@ -60,26 +61,31 @@ function RunForm() {
             backgroundColor: "#1F2937",
             padding: "10px 20px",
             borderRadius: "4px 4px 0 0",
+            textAlign: "center",
           }}
         >
           Alerts
         </Typography>
-        <form
-          onSubmit={handleSubmit}
-          style={{ display: "flex", alignItems: "center", marginTop: "10px" }}
-        >
-          <TextField
-            fullWidth
-            label="Create an alert about..."
-            variant="outlined"
-            value={alertText}
-            onChange={(e) => setAlertText(e.target.value)}
-            sx={{ marginRight: "10px" }}
-          />
-          <IconButton type="submit" color="primary" disabled={isLoading}>
-            {isLoading ? <CircularProgress size={24} /> : <AddIcon />}
-          </IconButton>
-        </form>
+        <Box sx={{ padding: "10px" }}>
+          {" "}
+          {/* Added Box for padding around form */}
+          <form
+            onSubmit={handleSubmit}
+            style={{ display: "flex", alignItems: "center", marginTop: "10px" }}
+          >
+            <TextField
+              fullWidth
+              label="Create an alert about..."
+              variant="outlined"
+              value={alertText}
+              onChange={(e) => setAlertText(e.target.value)}
+              sx={{ marginRight: "10px" }}
+            />
+            <IconButton type="submit" color="primary" disabled={isLoading}>
+              {isLoading ? <CircularProgress size={24} /> : <AddIcon />}
+            </IconButton>
+          </form>
+        </Box>
         <AlertList key={String(refreshAlerts)} />
       </Paper>
     </Box>

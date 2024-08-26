@@ -88,7 +88,7 @@ function AlertList({ key }: { key: string }) {
               primary={feed.topic}
               secondary={`Frequency: ${feed.frequency} `}
             />
-            <ListItemSecondaryAction>
+            <ListItemSecondaryAction sx={{ marginRight: "8px" }}>
               <IconButton
                 edge="end"
                 aria-label="edit"
