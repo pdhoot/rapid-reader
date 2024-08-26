@@ -14,9 +14,10 @@ function App() {
     console.log(accessToken);
     if (!accessToken) {
       navigate("/"); // Redirect to the home page if the access_token is not present
-    } else {
-      navigate("/dashboard"); // Redirect to the dashboard if the access_token is present
     }
+    // else {
+    //   navigate("/dashboard"); // Redirect to the dashboard if the access_token is present
+    // }
   }, [navigate]);
 
   return (

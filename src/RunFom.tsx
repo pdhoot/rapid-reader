@@ -39,10 +39,10 @@ function RunForm() {
       sx={{
         display: "flex",
         justifyContent: "center",
-        alignItems: "flex-start", // Changed from "center" to "flex-start"
+        alignItems: "flex-start",
         height: "100vh",
         flexDirection: "column",
-        paddingTop: "20px", // Add padding to create space from top
+        paddingTop: "20px",
       }}
     >
       <Paper
@@ -50,7 +50,7 @@ function RunForm() {
         sx={{
           padding: "20px",
           width: "100%",
-          maxWidth: "500px",
+          maxWidth: "700px", // Increase the maxWidth here
           textAlign: "center",
         }}
       >
@@ -67,8 +67,6 @@ function RunForm() {
           Alerts
         </Typography>
         <Box sx={{ padding: "10px" }}>
-          {" "}
-          {/* Added Box for padding around form */}
           <form
             onSubmit={handleSubmit}
             style={{ display: "flex", alignItems: "center", marginTop: "10px" }}
