@@ -35,22 +35,38 @@ function RunForm() {
   };
 
   return (
-    <Box sx={{ padding: "20px", maxWidth: "600px", margin: "0 auto" }}>
-      <Typography
-        variant="h4"
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+        flexDirection: "column",
+      }}
+    >
+      <Paper
+        elevation={3}
         sx={{
-          color: "#fff",
-          backgroundColor: "#3f51b5",
-          padding: "10px 20px",
-          borderRadius: "4px 4px 0 0",
+          padding: "20px",
+          width: "100%",
+          maxWidth: "500px",
+          textAlign: "center",
         }}
       >
-        Alerts
-      </Typography>
-      <Paper elevation={3} sx={{ padding: "20px" }}>
+        <Typography
+          variant="h4"
+          sx={{
+            color: "#fff",
+            backgroundColor: "#1F2937",
+            padding: "10px 20px",
+            borderRadius: "4px 4px 0 0",
+          }}
+        >
+          Alerts
+        </Typography>
         <form
           onSubmit={handleSubmit}
-          style={{ display: "flex", alignItems: "center" }}
+          style={{ display: "flex", alignItems: "center", marginTop: "10px" }}
         >
           <TextField
             fullWidth

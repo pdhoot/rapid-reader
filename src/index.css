@@ -19,6 +19,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 a {
   font-weight: 500;
   color: #646cff;

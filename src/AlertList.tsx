@@ -76,10 +76,14 @@ function AlertList({ key }: { key: string }) {
   }
 
   return (
-    <Paper elevation={3} sx={{ marginTop: "20px" }}>
-      <List>
-        {feeds.map((feed, index) => (
-          <ListItem key={index} divider>
+    <List>
+      {feeds.map((feed, index) => (
+        <ListItem
+          key={index}
+          divider
+          sx={{ display: "flex", justifyContent: "center" }}
+        >
+          <Paper sx={{ padding: "10px", width: "100%", maxWidth: "450px" }}>
             <ListItemText
               primary={feed.topic}
               secondary={`Frequency: ${
@@ -100,10 +104,10 @@ function AlertList({ key }: { key: string }) {
                 <DeleteIcon />
               </IconButton>
             </ListItemSecondaryAction>
-          </ListItem>
-        ))}
-      </List>
-    </Paper>
+          </Paper>
+        </ListItem>
+      ))}
+    </List>
   );
 }
 
