@@ -86,9 +86,9 @@ function AlertList({ key }: { key: string }) {
           <Paper sx={{ padding: "10px", width: "100%", maxWidth: "450px" }}>
             <ListItemText
               primary={feed.topic}
-              secondary={`Frequency: ${
-                feed.frequency
-              } | Last Updated: ${new Date(feed.lastUpdated).toLocaleString()}`}
+              //   secondary={`Frequency: ${
+              //     feed.frequency
+              //   } | Last Updated: ${new Date(feed.lastUpdated).toLocaleString()}`}
             />
             <ListItemSecondaryAction>
               <IconButton
