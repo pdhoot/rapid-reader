@@ -10,14 +10,14 @@ function Landing() {
         <div className="w-full px-6 py-4 flex justify-between items-center">
           <div className="flex items-center">
             <img
-              src="logo.jpeg"
+              src="RapidRead logo 2.png"
               alt="Rapid Reader Logo"
               className="h-8 w-8 mr-2"
             />
-            <div className="text-2xl font-bold text-gray-800">Rapid Reader</div>
+            <div className="text-2xl font-bold text-gray-800">RapidRead</div>
           </div>
           <div className="space-x-6">
-            <a href="#" className="text-gray-700 hover:text-blue-500">
+            {/* <a href="#" className="text-gray-700 hover:text-blue-500">
               Home
             </a>
             <a href="#" className="text-gray-700 hover:text-blue-500">
@@ -25,8 +25,11 @@ function Landing() {
             </a>
             <a href="#" className="text-gray-700 hover:text-blue-500">
               Pricing
-            </a>
-            <a href="#" className="text-gray-700 hover:text-blue-500">
+            </a> */}
+            <a
+              href="mailto:ayush@rapidread.io?subject=Feedback%20for%20RapidRead"
+              className="text-gray-700 hover:text-blue-500"
+            >
               Contact Us
             </a>
           </div>
@@ -38,68 +41,128 @@ function Landing() {
         <div className="w-full px-6 md:flex md:items-start md:justify-between md:gap-x-12">
           <div className="md:w-1/2">
             <h1 className="text-5xl font-bold text-gray-800 leading-tight">
-              Stay Informed, Straight to Your Inbox
+              Fastest way to track the topics and trends that matter to you
             </h1>
             <p className="mt-4 text-lg text-gray-600">
-              Set up topics of interest and receive daily email summaries with
-              Rapid Reader.
+              Share your target themes and let AI filter the relevant articles
+              for you
             </p>
             <ul className="mt-8 space-y-6">
               <li className="flex items-center text-lg">
                 <svg
-                  className="w-6 h-6 text-blue-500 mr-2"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 100 100"
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="green"
+                  strokeWidth="5"
                 >
                   <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm-1-7h2V5H9v6zm1 4a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"
-                    clipRule="evenodd"
+                    d="M10 10 L90 10 L90 90 L10 90 Z"
+                    fill="none"
+                    stroke="green"
+                    strokeWidth="5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+
+                  <path
+                    d="M30 50 L45 70 L75 30"
+                    fill="none"
+                    stroke="green"
+                    strokeWidth="10"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
-                Customizable topics
+                Customisable Topics
               </li>
               <li className="flex items-center text-lg">
                 <svg
-                  className="w-6 h-6 text-blue-500 mr-2"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 100 100"
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="green"
+                  strokeWidth="5"
                 >
                   <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm-1-7h2V5H9v6zm1 4a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"
-                    clipRule="evenodd"
+                    d="M10 10 L90 10 L90 90 L10 90 Z"
+                    fill="none"
+                    stroke="green"
+                    strokeWidth="5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+
+                  <path
+                    d="M30 50 L45 70 L75 30"
+                    fill="none"
+                    stroke="green"
+                    strokeWidth="10"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
-                Daily email summaries
+                Receive personalised digest everyday
               </li>
               <li className="flex items-center text-lg">
                 <svg
-                  className="w-6 h-6 text-blue-500 mr-2"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 100 100"
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="green"
+                  strokeWidth="5"
                 >
                   <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm-1-7h2V5H9v6zm1 4a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"
-                    clipRule="evenodd"
+                    d="M10 10 L90 10 L90 90 L10 90 Z"
+                    fill="none"
+                    stroke="green"
+                    strokeWidth="5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+
+                  <path
+                    d="M30 50 L45 70 L75 30"
+                    fill="none"
+                    stroke="green"
+                    strokeWidth="10"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
-                No more clutter
+                Stay ahead of the curve
               </li>
               <li className="flex items-center text-lg">
                 <svg
-                  className="w-6 h-6 text-blue-500 mr-2"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 100 100"
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="green"
+                  strokeWidth="5"
                 >
                   <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm-1-7h2V5H9v6zm1 4a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"
-                    clipRule="evenodd"
+                    d="M10 10 L90 10 L90 90 L10 90 Z"
+                    fill="none"
+                    stroke="green"
+                    strokeWidth="5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+
+                  <path
+                    d="M30 50 L45 70 L75 30"
+                    fill="none"
+                    stroke="green"
+                    strokeWidth="10"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
-                Stay informed effortlessly
+                Become your domain expert!
               </li>
             </ul>
             <button
@@ -123,7 +186,7 @@ function Landing() {
         </div>
       </div>
 
-      {/* Testimonials Section */}
+      {/* Testimonials Section
       <div className="w-full px-6 py-20">
         <h2 className="text-3xl font-semibold text-gray-800 text-center mb-12">
           What Our Users Say
@@ -172,7 +235,7 @@ function Landing() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
