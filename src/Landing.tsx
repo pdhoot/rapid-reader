@@ -147,66 +147,34 @@ function Landing() {
             </button>
           </div>
           <div className="md:w-1/2 mt-12 md:mt-0 flex justify-center items-start">
-            <img
-              src="home.webp"
-              alt="Rapid Reader Interface"
-              className="w-full h-auto max-w-none rounded-lg shadow-lg"
-              style={{ maxHeight: "400px" }}
-            />
+            <div
+              style={{
+                position: "relative",
+                boxSizing: "content-box",
+                maxHeight: "80vh",
+                width: "100%",
+                aspectRatio: "1.8421052631578947",
+                padding: "40px 0 40px 0",
+              }}
+            >
+              <iframe
+                src="https://app.supademo.com/embed/cm0cefuzf1msz128vyox8dgdj?embed_v=2"
+                loading="lazy"
+                title="RapidRead Demo"
+                allow="clipboard-write"
+                allowFullScreen
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                }}
+              ></iframe>
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Testimonials Section
-      <div className="w-full px-6 py-20">
-        <h2 className="text-3xl font-semibold text-gray-800 text-center mb-12">
-          What Our Users Say
-        </h2>
-        <div className="flex flex-wrap justify-center -mx-4">
-          <div className="w-full md:w-1/3 px-4 mb-8">
-            <div className="bg-white shadow-md rounded-lg p-6 text-center">
-              <p className="text-gray-600">
-                "Rapid Reader keeps me updated without the hassle!"
-              </p>
-              <div className="mt-4">
-                <span className="text-yellow-500">&#9733;</span>
-                <span className="text-yellow-500">&#9733;</span>
-                <span className="text-yellow-500">&#9733;</span>
-                <span className="text-yellow-500">&#9733;</span>
-                <span className="text-yellow-500">&#9733;</span>
-              </div>
-            </div>
-          </div>
-          <div className="w-full md:w-1/3 px-4 mb-8">
-            <div className="bg-white shadow-md rounded-lg p-6 text-center">
-              <p className="text-gray-600">
-                "I love the daily summaries delivered straight to my inbox!"
-              </p>
-              <div className="mt-4">
-                <span className="text-yellow-500">&#9733;</span>
-                <span className="text-yellow-500">&#9733;</span>
-                <span className="text-yellow-500">&#9733;</span>
-                <span className="text-yellow-500">&#9733;</span>
-                <span className="text-yellow-500">&#9733;</span>
-              </div>
-            </div>
-          </div>
-          <div className="w-full md:w-1/3 px-4 mb-8">
-            <div className="bg-white shadow-md rounded-lg p-6 text-center">
-              <p className="text-gray-600">
-                "A must-have tool for staying informed!"
-              </p>
-              <div className="mt-4">
-                <span className="text-yellow-500">&#9733;</span>
-                <span className="text-yellow-500">&#9733;</span>
-                <span className="text-yellow-500">&#9733;</span>
-                <span className="text-yellow-500">&#9733;</span>
-                <span className="text-yellow-500">&#9733;</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 }
