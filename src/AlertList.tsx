@@ -9,7 +9,6 @@ import {
   CircularProgress,
   Typography,
 } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 import config from "./config";
@@ -106,15 +105,6 @@ function AlertList({ key }: { key: string }) {
               secondary={`Frequency: ${feed.frequency} `}
             />
             <ListItemSecondaryAction sx={{ marginRight: "8px" }}>
-              <IconButton
-                edge="end"
-                aria-label="edit"
-                href={feed.link}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <EditIcon />
-              </IconButton>
               <IconButton
                 edge="end"
                 aria-label="delete"
