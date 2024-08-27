@@ -4,11 +4,11 @@ import axios from "axios";
 import config from "./config";
 
 function AuthCallback() {
+  const navigate = useNavigate();
   useEffect(() => {
     const fragment = window.location.hash.substring(1);
     const params = new URLSearchParams(fragment);
     const accessToken = params.get("access_token");
-    const navigate = useNavigate();
     console.log("Access token:", accessToken);
 
     if (accessToken) {
@@ -22,9 +22,7 @@ function AuthCallback() {
         .then((response) => {
           console.log("Token stored successfully", response.data);
           // Redirect to the dashboard or another page
-          navigate("/dashboard", {
-            state: { isNewUser: response.data.isNewUser },
-          });
+          navigate("/dashboard");
         })
         .catch((error) => {
           console.error("Error storing token:", error);
