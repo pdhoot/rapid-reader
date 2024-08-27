@@ -15,6 +15,7 @@ import axios from "axios";
 import config from "./config";
 
 interface RSSFeed {
+  id: number;
   topic: string;
   frequency: string;
   link: string;
@@ -40,6 +41,22 @@ function AlertList({ key }: { key: string }) {
         setLoading(false);
       });
   }, [key]);
+
+  const handleDelete = async (
+    event: React.MouseEvent<HTMLButtonElement>,
+    feedId: number
+  ) => {
+    event.preventDefault();
+    try {
+      await axios.get(`${config.apiHostname}/delete/alert?id=${feedId}`, {
+        withCredentials: true,
+      });
+      setFeeds((prevFeeds) => prevFeeds.filter((feed) => feed.id !== feedId));
+    } catch (error) {
+      console.error("Error deleting alert:", error);
+      setError("Failed to delete alert");
+    }
+  };
 
   if (loading) {
     return (
@@ -98,7 +115,11 @@ function AlertList({ key }: { key: string }) {
               >
                 <EditIcon />
               </IconButton>
-              <IconButton edge="end" aria-label="delete">
+              <IconButton
+                edge="end"
+                aria-label="delete"
+                onClick={(event) => handleDelete(event, feed.id)}
+              >
                 <DeleteIcon />
               </IconButton>
             </ListItemSecondaryAction>

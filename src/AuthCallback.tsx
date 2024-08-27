@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import config from "./config";
 
@@ -7,6 +8,7 @@ function AuthCallback() {
     const fragment = window.location.hash.substring(1);
     const params = new URLSearchParams(fragment);
     const accessToken = params.get("access_token");
+    const navigate = useNavigate();
     console.log("Access token:", accessToken);
 
     if (accessToken) {
@@ -20,7 +22,9 @@ function AuthCallback() {
         .then((response) => {
           console.log("Token stored successfully", response.data);
           // Redirect to the dashboard or another page
-          window.location.href = "/dashboard";
+          navigate("/dashboard", {
+            state: { isNewUser: response.data.isNewUser },
+          });
         })
         .catch((error) => {
           console.error("Error storing token:", error);
