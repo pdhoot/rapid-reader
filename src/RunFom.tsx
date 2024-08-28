@@ -22,9 +22,13 @@ function RunForm({ isNewUser }: { isNewUser: boolean }) {
     setIsLoading(true);
 
     try {
-      await axios.post(`${config.apiHostname}/create/alert`, {
-        topic: alertText,
-      });
+      await axios.post(
+        `${config.apiHostname}/create/alert`,
+        {
+          topic: alertText,
+        },
+        { withCredentials: true }
+      );
       setIsLoading(false);
       setRefreshAlerts((prev) => !prev);
       setAlertText("");
@@ -38,23 +42,25 @@ function RunForm({ isNewUser }: { isNewUser: boolean }) {
     <Box
       sx={{
         display: "flex",
-        justifyContent: "center",
-        alignItems: "flex-start",
-        height: "100vh",
         flexDirection: "column",
-        paddingTop: "20px",
+        height: "calc(100vh - 200px)", // Adjust for navbar height
         width: "100%",
-        maxWidth: "700px", // Increase this if needed
+        maxWidth: "700px",
         margin: "0 auto",
+        paddingTop: "20px",
+        paddingBottom: "20px",
       }}
     >
       <Paper
         elevation={3}
         sx={{
-          padding: "20px",
-          width: "100%", // Ensure it takes full width of its container
-          minWidth: "700px", // Set a minimum width
-          textAlign: "center",
+          display: "flex",
+          flexDirection: "column",
+          width: "100%",
+          minWidth: "700px",
+          height: "100%",
+          maxHeight: "calc(100vh - 104px)", // Adjust for navbar and padding
+          overflow: "hidden",
         }}
       >
         <Typography
@@ -65,14 +71,17 @@ function RunForm({ isNewUser }: { isNewUser: boolean }) {
             padding: "10px 20px",
             borderRadius: "4px 4px 0 0",
             textAlign: "center",
+            position: "sticky",
+            top: 0,
+            zIndex: 1,
           }}
         >
           Alerts
         </Typography>
-        <Box sx={{ padding: "10px" }}>
+        <Box sx={{ padding: "10px", flexShrink: 0 }}>
           <form
             onSubmit={handleSubmit}
-            style={{ display: "flex", alignItems: "center", marginTop: "10px" }}
+            style={{ display: "flex", alignItems: "center" }}
           >
             <TextField
               fullWidth
@@ -87,7 +96,16 @@ function RunForm({ isNewUser }: { isNewUser: boolean }) {
             </IconButton>
           </form>
         </Box>
-        <AlertList key={String(refreshAlerts)} />
+        <Box
+          sx={{
+            flexGrow: 1,
+            overflowY: "auto",
+            minHeight: "100px",
+            maxHeight: "calc(100vh - 250px)",
+          }}
+        >
+          <AlertList key={String(refreshAlerts)} />
+        </Box>
       </Paper>
       {isNewUser && (
         <Paper
