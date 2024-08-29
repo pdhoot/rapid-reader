@@ -19,6 +19,7 @@ function RunForm({ isNewUser }: { isNewUser: boolean }) {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (!alertText.trim()) return; // Prevent submission if alertText is empty or only whitespace
     setIsLoading(true);
 
     try {
@@ -91,7 +92,11 @@ function RunForm({ isNewUser }: { isNewUser: boolean }) {
               onChange={(e) => setAlertText(e.target.value)}
               sx={{ marginRight: "10px", minWidth: "400px" }} // Set a minimum width for the TextField
             />
-            <IconButton type="submit" color="primary" disabled={isLoading}>
+            <IconButton
+              type="submit"
+              color="primary"
+              disabled={isLoading || !alertText.trim()} // Disable button when loading or alertText is empty
+            >
               {isLoading ? <CircularProgress size={24} /> : <AddIcon />}
             </IconButton>
           </form>
