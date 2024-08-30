@@ -2,9 +2,11 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import config from "./config";
+import { CircularProgress, Typography, Box } from "@mui/material";
 
 function AuthCallback() {
   const navigate = useNavigate();
+
   useEffect(() => {
     const fragment = window.location.hash.substring(1);
     const params = new URLSearchParams(fragment);
@@ -30,11 +32,19 @@ function AuthCallback() {
     } else {
       console.error("No access token found in the URL");
     }
-  }, []);
+  }, [navigate]);
 
   return (
-    <div>
-      <p>Processing authentication...</p>
+    <div className="min-h-screen bg-gradient-to-b from-blue-100 to-white flex items-center justify-center px-4 sm:px-6 lg:px-8">
+      <Box className="text-center">
+        <CircularProgress size={60} className="text-blue-600 mb-4" />
+        <Typography variant="h5" className="text-gray-800 font-semibold">
+          Loading...
+        </Typography>
+        <Typography variant="body1" className="text-gray-600 mt-2">
+          Processing authentication
+        </Typography>
+      </Box>
     </div>
   );
 }
