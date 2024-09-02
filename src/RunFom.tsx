@@ -15,7 +15,7 @@ function RunForm({ isNewUser }: { isNewUser: boolean }) {
   const [placeholder, setPlaceholder] = useState("RBI");
   const [showNewsPreview, setShowNewsPreview] = useState(false);
   const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const examples = ["RBI", "Fintech", "SaaS", "VC"];
+  const examples = ["eg. RBI", "eg. Fintech", "eg. SaaS", "eg. VC"];
 
   useEffect(() => {
     const interval = setInterval(() => {
