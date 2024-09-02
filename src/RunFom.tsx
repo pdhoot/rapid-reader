@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { TextField, Button, Typography, Paper, Alert } from "@mui/material";
 import AlertList from "./AlertList";
 import axios from "axios";
 import config from "./config";
+import NewsPreview from "./NewsPreview";
 
 function RunForm({ isNewUser }: { isNewUser: boolean }) {
   const [alertText, setAlertText] = useState("");
@@ -12,6 +13,8 @@ function RunForm({ isNewUser }: { isNewUser: boolean }) {
   const [success, setSuccess] = useState("");
   const [deleteSuccess, setDeleteSuccess] = useState("");
   const [placeholder, setPlaceholder] = useState("RBI");
+  const [showNewsPreview, setShowNewsPreview] = useState(false);
+  const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const examples = ["RBI", "Fintech", "SaaS", "VC"];
 
   useEffect(() => {
@@ -41,6 +44,22 @@ function RunForm({ isNewUser }: { isNewUser: boolean }) {
     return () => clearTimeout(timer);
   }, [success, deleteSuccess]);
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAlertText(e.target.value);
+
+    if (typingTimeoutRef.current) {
+      clearTimeout(typingTimeoutRef.current);
+    }
+
+    typingTimeoutRef.current = setTimeout(() => {
+      if (e.target.value.trim()) {
+        setShowNewsPreview(true);
+      } else {
+        setShowNewsPreview(false);
+      }
+    }, 2000);
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!alertText.trim()) return;
@@ -57,6 +76,7 @@ function RunForm({ isNewUser }: { isNewUser: boolean }) {
       setSuccess("Alert created successfully!");
       setAlertText("");
       setRefreshAlerts(!refreshAlerts);
+      setShowNewsPreview(false);
     } catch (error) {
       setError("Error setting up alert. Please try again.");
     } finally {
@@ -90,9 +110,9 @@ function RunForm({ isNewUser }: { isNewUser: boolean }) {
               label="Create an alert about..."
               variant="outlined"
               value={alertText}
-              onChange={(e) => setAlertText(e.target.value)}
-              placeholder={placeholder} // Add this line
-              autoFocus // Add this line
+              onChange={handleInputChange}
+              placeholder={placeholder}
+              autoFocus
               className="bg-white font-poppins"
               InputProps={{
                 className: "font-poppins",
@@ -130,24 +150,27 @@ function RunForm({ isNewUser }: { isNewUser: boolean }) {
           )}
         </Paper>
 
-        <Paper
-          elevation={3}
-          className="mt-8 p-6 md:p-8 bg-white rounded-lg shadow-lg"
-        >
-          <Typography
-            variant="h5"
-            className="mb-4 text-gray-800 font-semibold font-poppins"
+        {!showNewsPreview && (
+          <Paper
+            elevation={3}
+            className="mt-8 p-6 md:p-8 bg-white rounded-lg shadow-lg"
           >
-            My alerts
-          </Typography>
-          <div className="max-h-96 overflow-y-auto">
-            <AlertList
-              key={String(refreshAlerts)}
-              setDeleteSuccess={setDeleteSuccess}
-              // setRefreshAlerts={setRefreshAlerts}
-            />
-          </div>
-        </Paper>
+            <Typography
+              variant="h5"
+              className="mb-4 text-gray-800 font-semibold font-poppins"
+            >
+              My alerts
+            </Typography>
+            <div className="max-h-96 overflow-y-auto">
+              <AlertList
+                key={String(refreshAlerts)}
+                setDeleteSuccess={setDeleteSuccess}
+              />
+            </div>
+          </Paper>
+        )}
+
+        {showNewsPreview && <NewsPreview alertText={alertText} />}
 
         {isNewUser && (
           <Paper
