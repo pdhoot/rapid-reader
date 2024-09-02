@@ -67,8 +67,16 @@ function NewsPreview({ alertText }: { alertText: string }) {
       >
         Alert preview
       </Typography>
-      <Typography variant="body2" sx={{ mb: 2, color: "text.secondary" }}>
-        We will send a summary of similar articles on this topic every morning.
+      <Typography
+        variant="body1" // Changed from body2 to body1 for larger font size
+        sx={{
+          mb: 4,
+          color: "text.secondary",
+          fontWeight: "medium",
+          textDecoration: "underline",
+        }} // Increased mb to 4 for more space
+      >
+        Get a curated summary of similar articles on this topic daily
       </Typography>
       {articles.map((article, index) => (
         <Box
