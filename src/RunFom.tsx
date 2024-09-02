@@ -11,6 +11,20 @@ function RunForm({ isNewUser }: { isNewUser: boolean }) {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [deleteSuccess, setDeleteSuccess] = useState("");
+  const [placeholder, setPlaceholder] = useState("RBI");
+  const examples = ["RBI", "Fintech", "SaaS", "VC"];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPlaceholder((prev) => {
+        const currentIndex = examples.indexOf(prev);
+        const nextIndex = (currentIndex + 1) % examples.length;
+        return examples[nextIndex];
+      });
+    }, 2000); // Change every 2 seconds
+
+    return () => clearInterval(interval);
+  }, []); // Empty dependency array to run only once on mount
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -77,6 +91,8 @@ function RunForm({ isNewUser }: { isNewUser: boolean }) {
               variant="outlined"
               value={alertText}
               onChange={(e) => setAlertText(e.target.value)}
+              placeholder={placeholder} // Add this line
+              autoFocus // Add this line
               className="bg-white font-poppins"
               InputProps={{
                 className: "font-poppins",
