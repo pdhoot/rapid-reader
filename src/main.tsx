@@ -8,7 +8,22 @@ function Root() {
   useEffect(() => {
     const isWebView = () => {
       const userAgent = navigator.userAgent.toLowerCase();
-      return /(webview|wv)/i.test(userAgent) || /linkedin/i.test(userAgent);
+      const standalone = (window.navigator as any).standalone;
+      const rules = [
+        "webview",
+        "wv",
+        "linkedin",
+        "(iphone|ipod|ipad)(?!.*safari)",
+        "android.*(wv|.0.0.0)",
+        "fb_iab",
+        "instagram",
+        "line",
+        "fb4a",
+        "fbav",
+        "twitter",
+      ];
+      const regex = new RegExp(`(${rules.join("|")})`, "i");
+      return Boolean(userAgent.match(regex)) || standalone === false;
     };
 
     if (isWebView()) {
