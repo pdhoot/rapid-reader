@@ -1,5 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
-import { TextField, Button, Typography, Paper, Alert } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Typography,
+  Paper,
+  Alert,
+  Select,
+  MenuItem,
+  SelectChangeEvent,
+} from "@mui/material";
 import AlertList from "./AlertList";
 import axios from "axios";
 import config from "./config";
@@ -7,6 +16,7 @@ import NewsPreview from "./NewsPreview";
 
 function RunForm({ isNewUser }: { isNewUser: boolean }) {
   const [alertText, setAlertText] = useState("");
+  const [region, setRegion] = useState("India"); // Default to India
   const [isLoading, setIsLoading] = useState(false);
   const [refreshAlerts, setRefreshAlerts] = useState(false);
   const [error, setError] = useState("");
@@ -27,7 +37,7 @@ function RunForm({ isNewUser }: { isNewUser: boolean }) {
     }, 2000); // Change every 2 seconds
 
     return () => clearInterval(interval);
-  }, []); // Empty dependency array to run only once on mount
+  }, []);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -60,6 +70,10 @@ function RunForm({ isNewUser }: { isNewUser: boolean }) {
     }, 2000);
   };
 
+  const handleRegionChange = (event: SelectChangeEvent) => {
+    setRegion(event.target.value as string);
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!alertText.trim()) return;
@@ -70,7 +84,7 @@ function RunForm({ isNewUser }: { isNewUser: boolean }) {
     try {
       await axios.post(
         `${config.apiHostname}/create/alert`,
-        { topic: alertText },
+        { topic: alertText, region: region },
         { withCredentials: true }
       );
       setSuccess("Alert created successfully!");
@@ -105,22 +119,33 @@ function RunForm({ isNewUser }: { isNewUser: boolean }) {
           </Typography>
           <div className="py-2"></div>
           <form onSubmit={handleSubmit} className="space-y-4">
-            <TextField
-              fullWidth
-              label="Create an alert about..."
-              variant="outlined"
-              value={alertText}
-              onChange={handleInputChange}
-              placeholder={placeholder}
-              autoFocus
-              className="bg-white font-poppins"
-              InputProps={{
-                className: "font-poppins",
-              }}
-              InputLabelProps={{
-                className: "font-poppins",
-              }}
-            />
+            <div className="flex space-x-4">
+              <TextField
+                fullWidth
+                label="Create an alert about..."
+                variant="outlined"
+                value={alertText}
+                onChange={handleInputChange}
+                placeholder={placeholder}
+                autoFocus
+                className="bg-white font-poppins flex-grow"
+                InputProps={{
+                  className: "font-poppins",
+                }}
+                InputLabelProps={{
+                  className: "font-poppins",
+                }}
+              />
+              <Select
+                value={region}
+                onChange={handleRegionChange}
+                aria-label="region selection"
+                className="font-poppins"
+              >
+                <MenuItem value="India">India</MenuItem>
+                <MenuItem value="US">US</MenuItem>
+              </Select>
+            </div>
             <Button
               type="submit"
               variant="contained"
@@ -142,7 +167,6 @@ function RunForm({ isNewUser }: { isNewUser: boolean }) {
               {success}
             </Alert>
           )}
-
           {deleteSuccess && (
             <Alert severity="success" className="mt-4 font-poppins">
               {deleteSuccess}

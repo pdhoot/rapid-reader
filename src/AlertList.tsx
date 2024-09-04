@@ -6,8 +6,10 @@ import {
   IconButton,
   Typography,
   Paper,
+  Chip,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import PublicIcon from "@mui/icons-material/Public";
 import axios from "axios";
 import config from "./config";
 
@@ -79,16 +81,31 @@ function AlertList({
         >
           <Paper className="p-4 w-full rounded-lg shadow-sm">
             <div className="flex justify-between items-center">
-              <ListItemText
-                primary={
-                  <Typography
-                    variant="subtitle1"
-                    className="font-semibold text-gray-800 font-poppins"
-                  >
-                    {feed.topic}
-                  </Typography>
-                }
-              />
+              <div className="flex items-center">
+                <ListItemText
+                  primary={
+                    <Typography
+                      variant="subtitle1"
+                      className="font-semibold text-gray-800 font-poppins"
+                    >
+                      {feed.topic}
+                    </Typography>
+                  }
+                />
+                <Chip
+                  icon={<PublicIcon style={{ color: "#9e9e9e" }} />}
+                  label={feed.region}
+                  size="small"
+                  variant="outlined"
+                  className="ml-2"
+                  style={{
+                    backgroundColor: "transparent",
+                    borderColor: "#9e9e9e",
+                    color: "#9e9e9e",
+                    height: "24px",
+                  }}
+                />
+              </div>
               <IconButton
                 edge="end"
                 aria-label="delete"
