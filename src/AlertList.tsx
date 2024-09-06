@@ -51,8 +51,8 @@ function AlertList({
     }
   };
 
-  const handleItemClick = (id: string) => {
-    navigate(`/topic?id=${id}`);
+  const handleItemClick = (id: string, topic: string) => {
+    navigate(`/topic?id=${id}&topic=${topic}`);
   };
 
   if (error) {
@@ -84,7 +84,7 @@ function AlertList({
         <ListItem
           key={index}
           className="bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200 cursor-pointer"
-          onClick={() => handleItemClick(feed.id)}
+          onClick={() => handleItemClick(feed.id, feed.topic)}
         >
           <Paper className="p-4 w-full rounded-lg shadow-sm">
             <div className="flex justify-between items-center">

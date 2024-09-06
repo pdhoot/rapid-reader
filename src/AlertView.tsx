@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   Typography,
   List,
@@ -44,6 +44,8 @@ function AlertView() {
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
   const alertId = new URLSearchParams(location.search).get("id");
+  const topic = new URLSearchParams(location.search).get("topic");
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchNewsItems(selectedDate);
@@ -87,6 +89,12 @@ function AlertView() {
         </Typography>
       </header>
       <nav className="bg-blue-500 text-white p-2 flex justify-between items-center">
+        <div className="flex items-center">
+          <ChevronLeft onClick={() => navigate(-1)} />
+          <Typography variant="body1" className="mx-4">
+            {topic}
+          </Typography>
+        </div>
         <div className="flex items-center">
           <ChevronLeft
             onClick={() => changeDate(-1)}
