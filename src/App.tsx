@@ -2,6 +2,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import AuthCallback from "./AuthCallback";
 import Dashboard from "./Dashboard";
 import Landing from "./Landing"; // Uncomment if you have a Home component
+import AlertView from "./AlertView";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 import { useEffect } from "react";
 import Cookies from "js-cookie"; // Import js-cookie to manage cookies
@@ -24,6 +25,7 @@ function App() {
     <Routes>
       <Route path="/auth/callback" element={<AuthCallback />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/topic" element={<AlertView />} />
       <Route path="/" element={<Landing />} />
     </Routes>
   );

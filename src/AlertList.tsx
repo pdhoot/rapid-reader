@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   List,
   ListItem,
@@ -18,6 +19,7 @@ function AlertList({
 }: {
   setDeleteSuccess: (value: string) => void;
 }) {
+  const navigate = useNavigate();
   const [feeds, setFeeds] = useState([]);
   const [error, setError] = useState("");
 
@@ -49,6 +51,10 @@ function AlertList({
     }
   };
 
+  const handleItemClick = (id: string) => {
+    navigate(`/topic?id=${id}`);
+  };
+
   if (error) {
     return (
       <Typography
@@ -77,7 +83,8 @@ function AlertList({
       {feeds.map((feed: any, index: number) => (
         <ListItem
           key={index}
-          className="bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+          className="bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200 cursor-pointer"
+          onClick={() => handleItemClick(feed.id)}
         >
           <Paper className="p-4 w-full rounded-lg shadow-sm">
             <div className="flex justify-between items-center">
