@@ -10,8 +10,7 @@ const __dirname = path.dirname(__filename);
 const mainSitemapPath = path.resolve(__dirname, "../dist/sitemap.xml");
 const sitemapIndexPath = path.resolve(__dirname, "../dist/sitemap-index.xml");
 
-const sitemapIndexContent = `
-<?xml version="1.0" encoding="UTF-8"?>
+const sitemapIndexContent = `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
     <loc>https://rapidread.io/sitemap.xml</loc>
