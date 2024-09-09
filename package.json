@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && node scripts/extend-sitemap.mjs",
+    "build": "tsc -b && vite build && node scripts/extend-sitemap.mjs && node scripts/generate-robots-txt.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },
